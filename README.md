@@ -37,6 +37,8 @@ $$\text{Drawdown} = \frac{\text{Price}_t - \text{Rolling Peak}}{\text{Rolling Pe
 
 ## Key Case Study Insights: QQQ (Market-Cap) vs. QQQE (Equal-Weight)
 
+![Dashboard](https://github.com/jpeter31415/risk_analysis_pipeline/blob/cf7514cd301227c382a82b82c8412533c42d363d/qqq_vs_qqe_dashboard.png)
+
 Because **QQQ** and **QQQE** hold the **exact same 100 technology stocks**, any divergence in their risk and drawdown matrices is purely driven by their mathematical weighting schemes. This pipeline uncovers two major structural phenomena:
 
 ### 1. The Cost of Concentration Drag (Rolling Sharpe Dynamics)
