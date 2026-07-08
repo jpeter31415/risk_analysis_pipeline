@@ -23,7 +23,6 @@ def fetch_historical_data(engine)-> pd.DataFrame:
     
     #pull in data
     df = pd.read_sql(query, con=engine, parse_dates = ['date'])
-    print(df.columns) 
 
     #pivot data into time-series matrix
     df_pivot = df.pivot(index = 'date', columns = 'ticker', values = 'adj_close_price').dropna()
@@ -81,28 +80,7 @@ def calculate_risk_metrics(price_df: pd.DataFrame, risk_free_rate: float = 0.04)
             }
     
     return metrics_summary, returns_df, price_df 
-
-#=====================
-# Rolling Calculations    
-#=====================
-
-def compute_rolling_metrics(returns_df: pd.DataFrame, price_df: pd.DataFrame, window: int=252)->tuple:
-    """
-    generates time-series dataframes for rolling one year windows
-    """
-    TRADING_DAYS = 252
-    
-    #pandas rolling mean over entire dataframe
-    r_mean = returns_df.rolling(window=window).mean()*TRADING_DAYS
-    r_std = returns_df.rolling(window=window).std()*np.sqrt(TRADING_DAYS)
-    rolling_sharpe = ((r_mean - 0.04)/r_std).dropna()
-    
-    #pandas rolling dd over entire dataframe
-    r_max = price_df.rolling(window= window).max()
-    rolling_dd = ((price_df - r_max)/r_max).dropna()
-
-    return rolling_sharpe, rolling_dd
-  
+ 
 #==========
 # Execution
 #==========    
@@ -110,9 +88,8 @@ if __name__ == '__main__':
     # Initialize connection using the engine 
     (DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)=("postgres", "postgres", "localhost", "5432", "ticker_prices")
     engine = create_engine(f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
-    historical_data = fetch_historical_data(engine) 
+    price_df = fetch_historical_data(engine) 
 
     # Get risk metrics
-    summary, returns_df, price_df = calculate_risk_metrics(historical_data,risk_free_rate=0.04)       
+    summary, returns_df, price_df = calculate_risk_metrics(price_df,risk_free_rate=0.04)       
     print(pd.DataFrame(summary).T)
-
