@@ -1,10 +1,10 @@
 # Multi-Asset Financial Risk Pipeline & Analytics Dashboard
 
-A data engineering and quantitative analytics pipeline designed to extract historical market data, stage it within a relational PostgreSQL database, and analyze time-varying risk and drawdown profiles over rolling horizons. 
+A quantitative analytics pipeline designed to extract historical market data, stage it within a relational PostgreSQL database, and analyze time-varying risk and drawdown profiles over rolling horizons. 
 
 While the system is built to accept **any arbitrary list of tickers** inside the ETL pipeline, this repository highlights a comparative study between **QQQ** (Market-Cap Weighted Nasdaq 100) and **QQQE** (Equal-Weighted Nasdaq 100) to demonstrate the mathematical impact of portfolio weighting mechanics on risk-adjusted consistency and capital preservation.
 
-## 🛠️ Technology Stack & Architecture
+## Technology Stack & Architecture
 *   **Language:** Python 3.10+ (Pandas, NumPy for vectorized matrix operations)
 *   **Database:** PostgreSQL (Relational persistence with composite primary keys to guarantee data integrity)
 *   **ORM Layer:** SQLAlchemy 2.0 & Psycopg2 (Idempotent `ON CONFLICT DO UPDATE` UPSERT routines)
@@ -25,8 +25,8 @@ While the system is built to accept **any arbitrary list of tickers** inside the
 
 ### 1. Rolling Annualized Sharpe Ratio
 Instead of evaluating static lifetime performance, this engine calculates a rolling 1-year (252 trading days) window to track how excess return efficiency changes over distinct macroeconomic market cycles:
-$$\text{Sharpe Ratio} = \frac{R_p - R_f}{\sigma_p}$$
-*Where $R_p$ is the annualized asset return, $R_f$ is the risk-free rate benchmark (set to a flat 4.0%), and $\sigma_p$ represents the annualized sample standard deviation of daily log returns.*
+$$\text{Sharpe Ratio} = \frac{R_p - R_f}{\sigma}$$
+*Where $R_p$ is the annualized asset return, $R_f$ is the risk-free rate benchmark (set to a flat 4.0%), and $\sigma$ represents the annualized sample standard deviation of daily log returns.*
 
 ### 2. Rolling Drawdown Profiles ("Underwater" Horizon)
 To evaluate real-world capital preservation and measure asset behavior during market stress, the pipeline monitors the peak-to-trough equity erosion over rolling horizons:
