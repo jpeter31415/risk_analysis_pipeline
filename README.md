@@ -7,7 +7,7 @@ While the system is built to accept **any arbitrary list of tickers** inside the
 ## Technology Stack 
 *   **Language:** Python 3.10+ 
 *   **Database:** PostgreSQL 
-*   **ORM Layer:** SQLAlchemy 2.0 & Psycopg2 
+*   **Data Mapper:** SQLAlchemy 2.0 & Psycopg2 
 *   **Visual Analytics:** Matplotlib & Seaborn
 
 ---
