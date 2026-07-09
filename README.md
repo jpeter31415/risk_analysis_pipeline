@@ -15,13 +15,15 @@ While the system is built to accept **any arbitrary list of tickers** inside the
 ## Methodology & Mathematical Foundation
 
 ### 1. Rolling Annualized Sharpe Ratio
-Instead of evaluating static lifetime performance, this engine calculates a rolling 1-year (252 trading days) window to track how excess return efficiency changes over distinct macroeconomic market cycles:
+Instead of evaluating static lifetime performance, this engine calculates a rolling 1-year (252 trading days) window to track how excess returns change over distinct macroeconomic market cycles:
 $$\text{Sharpe Ratio} = \frac{R_p - R_f}{\sigma}$$
+where excess returns are given by the numerator and volatility (std. dev.) is the denominator
 
 
 ### 2. Rolling Drawdown Profiles ("Underwater" Horizon)
-To evaluate real-world capital preservation and measure asset behavior during market stress, the pipeline monitors the peak-to-trough equity erosion over rolling horizons:
+To evaluate real-world capital preservation during market stress, the pipeline monitors the peak-to-trough equity erosion over rolling horizons:
 $$\text{Drawdown} = \frac{\text{Price}_t - \text{Rolling Peak}}{\text{Rolling Peak}}$$
+where the subscript $t$ represents the current time period.
 
 ---
 
@@ -29,7 +31,7 @@ $$\text{Drawdown} = \frac{\text{Price}_t - \text{Rolling Peak}}{\text{Rolling Pe
 
 ![Dashboard](https://github.com/jpeter31415/risk_analysis_pipeline/blob/cf7514cd301227c382a82b82c8412533c42d363d/qqq_vs_qqe_dashboard.png)
 
-Because **QQQ** and **QQQE** hold the **exact same 100 technology stocks**, any divergence in their risk and drawdown profiles is purely driven by their weighting schemes. This pipeline uncovers two major structural phenomena:
+Because QQQ and QQQE hold the exact same 100 technology stocks, any divergence in their risk and drawdown profiles is purely driven by their weighting schemes. This pipeline uncovers two major structural phenomena:
 
 ### 1. The Cost of Concentration Drag (Rolling Sharpe Dynamics)
 In a market-cap weighted model (QQQ), mega-cap tech giants dominate the total portfolio variance.
