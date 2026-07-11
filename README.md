@@ -2,7 +2,7 @@
 
 A quantitative analytics pipeline designed to extract historical market data, stage it within a relational PostgreSQL database, and analyze time-varying risk and drawdown profiles over rolling horizons. 
 
-While the system is built to accept **any arbitrary list of tickers** inside the ETL pipeline, this repository highlights a comparative study between **QQQ** (Market-Cap Weighted Nasdaq 100) and **QQQE** (Equal-Weighted Nasdaq 100) to demonstrate the mathematical impact of portfolio weighting mechanics on risk-adjusted consistency and capital preservation.
+While the system is built to accept **any arbitrary list of tickers** inside the ETL pipeline, this repository highlights a comparative study between **QQQ** (Market-Cap Weighted Nasdaq 100) and **QQQE** (Equal-Weighted Nasdaq 100) to demonstrate the mathematical impact of portfolio weighting on risk-adjusted consistency and capital preservation.
 
 ## Technology Stack 
 *   **Language:** Python 3.10+ 
@@ -35,7 +35,7 @@ Because QQQ and QQQE hold the exact same 100 technology stocks, any divergence i
 
 ### 1. The Cost of Concentration Drag (Rolling Sharpe Dynamics)
 In a market-cap weighted model (QQQ), mega-cap tech giants dominate the total portfolio variance.
-*   **Bull Markets & Expansion:** When a few multi-trillion-dollar companies lead a narrow momentum rally, QQQ’s returns outpace the broader basket, generating a higher rolling Sharpe ratio.
+*   **Bull Markets & Expansion:** When a few multi-trillion-dollar companies lead a momentum rally, QQQ’s returns outpace the broader basket, generating a higher rolling Sharpe ratio.
 *   **Regime Shifts:** Over full market cycles, QQQE's equal-weighted model (allocating a flat 1% to all 100 companies) avoids concentration drag. The rolling Sharpe chart visually captures extended periods where broad market participation allows QQQE to achieve equivalent or superior risk-adjusted efficiency compared to its top-heavy counterpart.
 
 ### 2. Drawdown Depth & Structural Fragility
