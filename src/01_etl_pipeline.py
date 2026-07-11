@@ -24,14 +24,14 @@ start_date = dt.date.today() - relativedelta(years=10)
 end_date = dt.date.today()
 
 #database credentials
-db_user = os.getenv("db_user", "postgres")
-db_password = os.getenv("db_password", "postgres")
-db_host = os.getenv("db_host", "localhost")
-db_port = os.getenv("db_port", "5432")
-db_name = os.getenv("db_name", "ticker_prices")
+db_user = os.getenv('db_user', 'postgres')
+db_password = os.getenv('db_password', 'your secure password')
+db_host = os.getenv('db_host', 'localhost')
+db_port = os.getenv('db_port', '5432')
+db_name = os.getenv('db_name', 'ticker_prices')
 
 #create connection engine for PSQL
-database_url = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+database_url = f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
 engine = create_engine(database_url)
 metadata = MetaData()
 
