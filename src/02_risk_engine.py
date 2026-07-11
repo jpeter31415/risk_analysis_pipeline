@@ -86,8 +86,8 @@ def calculate_risk_metrics(price_df: pd.DataFrame, risk_free_rate: float = 0.04)
 #==========    
 if __name__ == '__main__':    
     # Initialize connection using the engine 
-    (DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)=("postgres", "postgres", "localhost", "5432", "ticker_prices")
-    engine = create_engine(f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+    (db_user, db_password, db_host, db_port, db_name)=('postgres', 'your secure password', 'localhost', '5432', 'ticker_prices')
+    engine = create_engine(f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
     price_df = fetch_historical_data(engine) 
 
     # Get risk metrics
