@@ -65,7 +65,7 @@ def generate_risk_analytics_dashboard(rolling_sharpe: pd.DataFrame, rolling_draw
     #====================
     # STYLE CONFIGURATION
     #====================
-    sns.set_theme(style="whitegrid")
+    sns.set_theme(style='whitegrid')
     plt.rcParams.update({
         'font.size': 11,
         'axes.labelsize': 12,
@@ -96,11 +96,11 @@ def generate_risk_analytics_dashboard(rolling_sharpe: pd.DataFrame, rolling_draw
     ax1.axhline(0, color='black', linestyle='--', linewidth=1, alpha=0.5) # Breakeven
     ax1.axhline(1, color='green', linestyle=':', linewidth=1, alpha=0.5)  # "Good" Sharpe threshold
     
-    ax1.set_title("Rolling 1-Year Sharpe Ratio Time-Series\n(Risk-Adjusted Performance Dynamics)")
-    ax1.set_xlabel("Date")
-    ax1.set_ylabel("Sharpe Ratio (Annualized)")
-    ax1.legend(loc="upper left", frameon=True)
-    ax1.grid(True, linestyle=":", alpha=0.6)
+    ax1.set_title('Rolling 1-Year Sharpe Ratio Time-Series\n(Risk-Adjusted Performance Dynamics)')
+    ax1.set_xlabel('Date')
+    ax1.set_ylabel('Sharpe Ratio (Annualized)')
+    ax1.legend(loc='upper left', frameon=True)
+    ax1.grid(True, linestyle=':', alpha=0.6)
 
     # =========================================================================
     # PANEL 2: ROLLING 1-YEAR DRAWDOWN PROFILE ("UNDERWATER" CHART)
@@ -126,16 +126,16 @@ def generate_risk_analytics_dashboard(rolling_sharpe: pd.DataFrame, rolling_draw
     #convert y-axis formatting into standard percentages
     ax2.yaxis.set_major_formatter(mtick.PercentFormatter(1.0))
 
-    ax2.set_title("Rolling 1-Year Drawdown Horizon\n(Capital Destruction and Peak-to-Trough Exposure)")
-    ax2.set_xlabel("Date")
-    ax2.set_ylabel("Drawdown from Rolling Peak (%)")
-    ax2.legend(loc="lower left", frameon=True)
-    ax2.grid(True, linestyle=":", alpha=0.6)
+    ax2.set_title('Rolling 1-Year Drawdown Horizon\n(Capital Destruction and Peak-to-Trough Exposure)')
+    ax2.set_xlabel('Date')
+    ax2.set_ylabel('Drawdown from Rolling Peak (%)')
+    ax2.legend(loc='lower left', frameon=True)
+    ax2.grid(True, linestyle=':', alpha=0.6)
 
     # =========================================================================
     # GLOBAL DASHBOARD ADJUSTMENTS
     # =========================================================================
-    plt.suptitle("Comparing Risk-Adjusted Profiles for Tickers", fontweight='bold')
+    plt.suptitle('Comparing Risk-Adjusted Profiles for Tickers', fontweight='bold')
     plt.tight_layout()
     
     #display the final plots
@@ -143,8 +143,8 @@ def generate_risk_analytics_dashboard(rolling_sharpe: pd.DataFrame, rolling_draw
 
 if __name__=='__main__':
     # Initialize connection using the engine 
-    (DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)=("postgres", "postgres", "localhost", "5432", "ticker_prices")
-    engine = create_engine(f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+    (db_user, db_password, db_host, db_port, db_name)=('postgres', 'your secure password', 'localhost', '5432', 'ticker_prices')
+    engine = create_engine(f'postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
     price_df = fetch_historical_data(engine)
     
     # Construct a dataframe of log returns
