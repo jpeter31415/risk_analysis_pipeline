@@ -45,7 +45,7 @@ Analyzing the rolling "underwater" drawdown charts reveals the trade-offs of div
 
 ---
 
-## 🚀 Execution & Replication Guide
+## Execution & Replication Guide
 
 1. **Clone the repository and install dependencies:**
    ```bash
